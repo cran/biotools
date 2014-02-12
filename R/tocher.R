@@ -1,0 +1,71 @@
+tocher <-
+function(d)
+{
+   if (!inherits(d, "dist"))
+      stop("'d' must be an object of class 'dist'!")
+   d <- as.matrix(d)
+   n <- nrow(d)
+   if (is.null(dimnames(d))) {
+       lab <- as.character(1:n)
+       } else {
+       lab <- colnames(d)
+   }
+   dimnames(d) <- list(lab, lab)
+   fun.min <- function(dist)
+   {
+      n <- ncol(dist)
+      v1 <- v2 <- NULL
+      aux <- data.frame(v1 = rep(colnames(dist), each = n),
+         v2 = rep(colnames(dist), times = n),
+         val = as.vector(dist))
+      aux2 <- subset(aux, v1 != v2)
+      ind <- which.min(aux2[, "val"])
+      mi <- aux2[ind, c("v1", "v2")]
+      return(c(as.matrix(mi)))
+   }
+   min1 <- fun.min(d)
+   g <- list()
+   ig <- 1
+   g[[ig]] <- min1
+   d. <- d
+   diag(d.) <- NA
+   theta <- max(apply(d., 2, min, na.rm = TRUE))
+   repeat {
+      newlab <- lab[-charmatch(unlist(g), lab)]
+      n <- length(newlab)
+      if (n < 1) break()
+      m <- matrix(0, n + 1, n + 1)
+      colnames(m) <- rownames(m) <- c("G", newlab)
+      m[newlab, newlab] <- d[newlab, newlab]
+      for(j in 1:n) {
+          m["G", newlab[j]] <- m[newlab[j], "G"] <-
+             mean(d[g[[ig]], newlab[j]])
+      }
+      comp <- newlab[which.min(m["G", newlab])]
+      if (m["G", comp] <= theta) {
+         g[[ig]] <- c(g[[ig]], comp)
+      } else {
+         ig <- ig + 1
+         if (n > 1) {
+            newcomp <- fun.min(d[newlab, newlab])
+            if (d[newcomp[1], newcomp[2]] <= theta) {
+               g[[ig]] <- newcomp
+            } else {
+               for(i in 1:n) g[[ig + i - 1]] <- newlab[i]
+            }
+         } else {
+            g[[ig]] <- newlab
+         }
+      }
+   }
+   ng <- length(g)
+   names(g) <- paste("cluster", 1:ng)
+   for(k in 1:ng) g[[k]] <- noquote(g[[k]])
+   print(g)
+   nopc <- sapply(g, length)
+   dc <- distClust(as.dist(d), nopc, unlist(g))
+   attr(g, "distClust") <- dc
+   attr(g, "d") <- as.dist(d)
+   attr(g, "class") <- "tocher"
+   invisible(g)
+}
