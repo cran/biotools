@@ -1,0 +1,16 @@
+# Exports
+export(aer)
+export(boxM)
+export(confusionmatrix)
+export(coph.tocher)
+export(creategroups)
+export(D2.dist)
+export(distClust)
+export(fitplotsize)
+export(optimumplotsize)
+export(pathanalysis)
+export(singh)
+export(tocher)
+
+# Imports
+import(utils, rpanel, MASS)
