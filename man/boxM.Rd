@@ -14,8 +14,8 @@ boxM(data, grouping)
 }
 
 \arguments{
-  \item{data}{ a numeric data.frame or matrix containing n observations of p variables;
-	it is expected that \code{n > p}. }
+  \item{data}{ a numeric data.frame or matrix containing \emph{n} observations of \emph{p} variables;
+	it is expected that \emph{n > p}. }
   \item{grouping}{ a vector of length n containing the class of each observation;
 	it is usualy a factor. }
 }

@@ -68,17 +68,25 @@ function(corMatrix, resp.col, colinearity = FALSE)
       f.fit <- function(pan)
       {
          k <- with(pan, pan[["k"]])
-         B <- solve(R.x + diag(k, nrow(R.x)), R.y)
+         R.x. <- R.x + diag(k, nrow(R.x))
+         B <- solve(R.x., R.y)
          path <- sweep(R.x, 2, B, FUN = "*")
          R2 <- B %*% R.y
          res <- sqrt(1 - R2)
-
-      cat("\n          Path Analysis \n",
-          "\nDirect (diagonal) and indirect (off-diagonal) effects \n")
-      print(path)
-      cat("--- \nR-squared:", R2, 
-         "\nResidual effect:", res,
-         "\nk-value (for colinearity):", k, "\n")
+         vif <- diag(solve(R.x.))
+         eigval <- eigen(R.x.)$values
+         cn <- eigval[1] / eigval[nrow(R.x)]
+         deter <- det(R.x.)
+         cat("\n          Path Analysis \n",
+             "\nDirect (diagonal) and indirect (off-diagonal) effects \n")
+         print(path)
+         cat("--- \nR-squared:", R2, 
+            "\nResidual effect:", res,
+            "\nk-value (for colinearity):", k, "\n")
+         cat("\n          Colinearity diagnostics \n")
+         cat("\nVIF: ", vif,
+            "\nCondition number: ", cn,
+            "\nDeterminant of (X'X + Ik): ", deter, "\n")
          return(pan)
       }
       panel <- rp.control()

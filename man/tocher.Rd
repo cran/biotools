@@ -33,7 +33,7 @@ Sharma, J.R. (2006) \emph{Statistical and biometrical techniques in plant breedi
    Delhi: New Age International.
 
 Silva, A.R. & Dias, C.T.S. (2013) A cophenetic correlation coefficient for
-   Tocher's method. \emph{Pesquisa Agropecu\'aria Brasileira}, 48:589-596. 
+   Tocher's method. \emph{Pesquisa Agropecuaria Brasileira}, 48:589-596. 
 }
 
 \author{
@@ -41,7 +41,7 @@ Anderson Rodrigo da Silva <anderson.agro@hotmail.com>
 }
 
 \seealso{
-\code{\link{coph.tocher}}, \code{\link{distClust}}, \code{\link{hclust}}
+\code{\link{D2.dist}}, \code{\link{coph.tocher}}, \code{\link{distClust}}, \code{\link{hclust}}
 }
 
 \examples{

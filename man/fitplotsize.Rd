@@ -22,7 +22,7 @@ fitplotsize(plotsize, CV)
 }
 
 \value{
-A \code{\link{nls}} output (see help(nls)). Also, a summary table is always printed,
+A \code{\link{nls}} output. Also, a summary table is always printed,
 if convergence is achieved.
 }
 
