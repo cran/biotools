@@ -12,7 +12,7 @@ article published by Silva et al. (2013).
 \usage{data(peppercorr)}
 
 \format{
-An object of class \code{matrix}.
+An object of class "matrix".
 }
 
 \source{

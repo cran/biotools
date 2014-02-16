@@ -19,7 +19,7 @@ confusionmatrix(obs, predict)
 }
 
 \value{
-A squared matrix containing the number of objects in each class,
+A square matrix containing the number of objects in each class,
 observed (rows) and predicted (columns). Diagonal elements
 refers to agreement of \code{obs} and \code{predict}.
 }

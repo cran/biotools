@@ -16,8 +16,8 @@ D2.dist(data, cov, inverted = FALSE)
 
 \arguments{
   \item{data}{ a data frame or matrix of data (\emph{n x p}).}
-  \item{cov}{ a variance-covariance matrix (\emph{p x p}) of data.}
-  \item{inverted}{ logical. If FALSE (default), \code{cov} is supposed to be a variance-covariance matrix.}
+  \item{cov}{ a variance-covariance matrix (\emph{p x p}).}
+  \item{inverted}{ logical. If \code{FALSE} (default), \code{cov} is supposed to be a variance-covariance matrix.}
 }
 
 \value{

@@ -15,9 +15,9 @@ singh(data, cov, inverted = FALSE, graph = TRUE, ...)
 
 \arguments{
   \item{data}{ a data frame or matrix of data (\emph{n x p}). }
-  \item{cov}{ a variance-covariance matrix (\emph{p x p}) of data. }
-  \item{inverted}{ logical. If FALSE (default), \code{cov} is supposed to be a variance-covariance matrix. }
-  \item{graph}{ logical; if TRUE (default), a pie chart containing the importance proportions is plotted. }
+  \item{cov}{ a variance-covariance matrix (\emph{p x p}). }
+  \item{inverted}{ logical. If \code{FALSE} (default), \code{cov} is supposed to be a variance-covariance matrix. }
+  \item{graph}{ logical; if \code{TRUE} (default), a pie chart containing the importance proportions is plotted. }
   \item{\dots}{ further graphical arguments. }
 }
 

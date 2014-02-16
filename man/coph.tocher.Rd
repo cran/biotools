@@ -17,7 +17,7 @@ coph.tocher(obj)
 
 
 \value{
-An object of class \code{dist}.
+An object of class "dist".
 }
 
 \references{

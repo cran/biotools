@@ -12,7 +12,7 @@ The data are taken from the article published by Silva & Dias (2013).
 \usage{data(garlicdist)}
 
 \format{
-An object of class \code{dist} based on 17 objects.
+An object of class "dist" based on 17 objects.
 }
 
 \source{

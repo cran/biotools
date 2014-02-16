@@ -11,6 +11,8 @@ export(optimumplotsize)
 export(pathanalysis)
 export(singh)
 export(tocher)
+export(raise.matrix)
+export(samplesize)
 
 # Imports
-import(utils, rpanel, MASS)
+import(utils, rpanel, MASS, boot)
