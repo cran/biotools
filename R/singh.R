@@ -36,14 +36,15 @@ function(data, cov, inverted = FALSE, graph = TRUE, ...)
    out <- rbind(out1, out2, out3)
    rownames(out) <- c("Singh statistic", "Proportion",
       "Cumulative proportion")
-   cat("\n          Importance of variables (Singh, 1981) \n\n")
-   print(out)
-   if(graph) {
-   par(...)
-   lab <- paste(colnames(out), " (", round(out[2, ], 3)*100,
-      "%", ")", sep = "")
-   pie(out[2, ], labels = lab,
-      main = "Importance of variables", ...) }
    class(out) <- "singh"
-   invisible(out)
+
+   if (graph) {
+      par(...)
+      lab <- paste(colnames(out), " (", round(out[2, ], 3)*100,
+         "%", ")", sep = "")
+      pie(out[2, ], labels = lab,
+         main = "Importance of variables", ...)
+   }
+
+   return(out)
 }

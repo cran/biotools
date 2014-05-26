@@ -21,11 +21,14 @@ singh(data, cov, inverted = FALSE, graph = TRUE, ...)
   \item{\dots}{ further graphical arguments. }
 }
 
-
 \value{
 \code{singh} returns a matrix containing the Singh statistic, the
 importance proportion and the cummulative proprtion of each
 variable (column) in data.
+}
+
+\section{Side Effects }{
+A pie chart containing the importance of the variables, if \code{graph = TRUE}.
 }
 
 \references{

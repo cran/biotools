@@ -17,14 +17,16 @@ tocher(d)
 }
 
 \value{
-\code{tocher} returns a list of length \emph{k} (the number of clusters) containing
-the labels of the objects in \code{d}. Furthermore, a matrix of distances
-within (diagonal) and between (off-diagonal) clusters is attached as an attribute.
+A list of 
+  \item{clusters }{a list of length \emph{k} (the number of clusters),
+	 containing the labels of the objects in \code{d} for each cluster.}
+  \item{distClust }{a matrix of distances within (diagonal) and between (off-diagonal) clusters.}
+  \item{d }{the input object.}
 }
 
 \references{
 Cruz, C.D.; Ferreira, F.M.; Pessoni, L.A. (2011) \emph{Biometria aplicada ao estudo
-   da diversidade gen\'etica}. Visconde do Rio Branco: Suprema.
+   da diversidade genetica}. Visconde do Rio Branco: Suprema.
 
 Rao, R.C. (1952) \emph{Advanced statistical methods in biometric research}.
    New York: John Wiley & Sons.
@@ -47,18 +49,18 @@ Anderson Rodrigo da Silva <anderson.agro@hotmail.com>
 \examples{
 # example 1
 data(garlicdist)
-garlic <- tocher(garlicdist)
-attr(garlic, "distClust") # cluster distances
+(garlic <- tocher(garlicdist))
+garlic$distClust  # cluster distances
 
 # example 2
 data(USArrests)
-usa <- tocher(dist(USArrests))
-attr(usa, "distClust")
+(usa <- tocher(dist(USArrests)))
+usa$distClust
 
 # example 3
 data(eurodist)
-euro <- tocher(eurodist)
-attr(euro, "distClust")
+(euro <- tocher(eurodist))
+euro$distClust
 
 # End (not run)
 }

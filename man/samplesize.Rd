@@ -47,6 +47,12 @@ A list of
 	points out of the CI (\code{n.out}) and the proportion of this number (\code{prop}). }
 }
 
+\section{Side Effects }{
+If \code{graph = TRUE}, a graphic with the dispersion of the estimates for each sample size, 
+as well as the graphic containing the number of points out of the confidence interval for 
+the reference sample.
+}
+
 \author{
 Anderson Rodrigo da Silva <anderson.agro@hotmail.com>
 }

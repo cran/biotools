@@ -5,6 +5,7 @@ function(data, grouping)
       stop("'data' must be a numeric data.frame or matrix!")
    if (length(grouping) != nrow(data))
       stop("incompatible dimensions!")
+   dname <- deparse(substitute(data))
    data <- as.matrix(data)
    grouping <- as.factor(as.character(grouping))
    p <- ncol(data)
@@ -27,12 +28,15 @@ function(data, grouping)
    X2 <- minus2logM * (1 - Co)
    dfchi <- (choose(p, 2) + p) * (nlev - 1)
    pval <- pchisq(X2, dfchi, lower.tail = FALSE)
-   out <- list(cov = mats, pooled = pooled, logDet = logdet,
-      chi = X2, df = dfchi, p.value = pval)
-   class(out) <- "boxM"
-   cat("\n          Box's M-test for Homogeneity of Covariance Matrices \n")
-   cat("\nChi-square (approx.) : ", X2, " on ", dfchi,
-       "degrees of freedom",
-       "\np-value :", pval, "\n")
-   invisible(out)
+   out <- structure(
+      list(statistic = c("Chi-Sq (approx.)" = X2),
+         parameter = c(df = dfchi),
+         p.value = pval,
+         cov = mats, pooled = pooled, logDet = logdet,
+         data.name = dname,
+         method = " Box's M-test for Homogeneity of Covariance Matrices"
+         ),
+      class = c("htest", "boxM")
+      )
+   return(out)
 }

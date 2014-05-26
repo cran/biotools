@@ -29,10 +29,13 @@ If \eqn{h \leq tol}, the groups are considered homogeneous.
 }
 
 \value{
-The value returned is a list of named vectors containing the values
-for the groups. Also, the result of the objective function evaluated
-at the covariate \code{x} is always printed, as well as the number of iterations
-required to achieve convergence.
+A list of
+  \item{covar }{a character indicating the name of the covariate.}
+  \item{func }{a character indicating the name of the objective function.}
+  \item{val.func }{a numeric vector containing the values evaluated by \code{func} on each group.}
+  \item{niter }{the number of iteration require to achieve convergence.}
+  \item{labels }{a list containing the labels of the objects in each group.}
+  \item{groups }{a list of named vectors containing the values for the groups}
 }
 
 \author{

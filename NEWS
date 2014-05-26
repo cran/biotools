@@ -1,0 +1,17 @@
+------------------------------------------------
+                version 1.0
+
+* First version released on CRAN
+
+------------------------------------------------
+                version 1.1
+
+* Documentation fixes
+* New functions: raise.matrix() and samplesize()
+
+------------------------------------------------
+                version 1.2
+
+* Documentation fixes
+* Print method for the functions: boxM(), creategroups(), pathanalysis(), singh() and tocher()
+* New functions: multcor.test(), findSubsample() and D2.disc()

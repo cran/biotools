@@ -1,24 +1,24 @@
 \name{pathanalysis}
 \alias{pathanalysis}
 
-\title{ Path Analysis, Simple and Under Colinearity }
+\title{ Path Analysis, Simple and Under Collinearity }
 
 \description{
 Function to perform the simple path analysis and the path analysis
-under colinearity (sometimes called \emph{ridge path analysis}). It computes
+under collinearity (sometimes called \emph{ridge path analysis}). It computes
 the direct (diagonal) and indirect (off-diagonal) effects of each explanatory
 variable over a response one.
 }
 
 \usage{
-pathanalysis(corMatrix, resp.col, colinearity = FALSE)
+pathanalysis(corMatrix, resp.col, collinearity = FALSE)
 }
 
 \arguments{
   \item{corMatrix}{ a correlation matrix. }
   \item{resp.col}{ an integer value indicating the column in \code{corMatrix} that corresponds to
 	the response variable. }
-  \item{colinearity}{ logical; if \code{TRUE}, an external interactive display is
+  \item{collinearity}{ logical; if \code{TRUE}, an external interactive display is
 	used to pass a value, say k, at which to evaluate the system:
 	(\bold{X'X} + \bold{I}k)\bold{B} = \bold{X'Y}, being \bold{X'X} the correlation matrix between explanatory variables,
 	\bold{X'Y} the correlation vector between all explanatory variables and the response variable,
@@ -35,6 +35,10 @@ A list of
   \item{CN }{ the condition number.}
 }
 
+\section{Side Effects }{
+If \code{collinearity = TRUE}, an interactive graphic is displayed for dealing with collinearity.
+}
+
 \references{
 Carvalho, S.P. (1995) \emph{Metodos alternativos de estimacao de coeficientes de
    trilha e indices de selecao, sob multicolinearidade}. Ph.D. Thesis, 
@@ -45,13 +49,9 @@ Carvalho, S.P. (1995) \emph{Metodos alternativos de estimacao de coeficientes de
 Anderson Rodrigo da Silva <anderson.agro@hotmail.com>
 }
 
-\note{
-If \code{colinearity} is \code{TRUE}, the outcome is just printed on R console.
-}
-
 \examples{
 data(peppercorr)
-pathanalysis(peppercorr, 6, colinearity = TRUE)
+pathanalysis(peppercorr, 6, collinearity = TRUE)
 
 # End (not run)
 }

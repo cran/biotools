@@ -61,11 +61,21 @@ function(d)
    ng <- length(g)
    names(g) <- paste("cluster", 1:ng)
    for(k in 1:ng) g[[k]] <- noquote(g[[k]])
-   print(g)
    nopc <- sapply(g, length)
    dc <- distClust(as.dist(d), nopc, unlist(g))
-   attr(g, "distClust") <- dc
-   attr(g, "d") <- as.dist(d)
-   attr(g, "class") <- "tocher"
-   invisible(g)
+   out <- list(clusters = g, distClust = dc, 
+      d = as.dist(d))
+   class(out) <- "tocher"
+   return(out)
+}
+
+
+# -------------------------------------------
+# print method
+print.tocher <- 
+function (x, digits = 4L, quote = TRUE, ...) 
+{
+   cat("\n          Tocher's Clustering \n\n")
+   print(x$clusters)
+   invisible(x)
 }

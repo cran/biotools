@@ -6,15 +6,17 @@
 \title{ Tools for Biometry and Applied Statistics in Agricultural Science }
 
 \description{
-Tools for Biometry and Applied Statistics in Agricultural Science
+This package contains tools designed to perform and work with cluster analysis, 
+discriminant analysis and path analysis (standard and with collinearity), as well as
+some useful miscellaneous tools for dealing with sample size and optimum plot size calculations.
 }
 
 \details{
 \tabular{ll}{
 Package: \tab biotools\cr
 Type: \tab Package\cr
-Version: \tab 1.1\cr
-Date: \tab 2014-02-16\cr
+Version: \tab 1.2\cr
+Date: \tab 2014-05-25\cr
 License: \tab GPL (>= 2)\cr
 }
 }
@@ -44,6 +46,8 @@ Lessman, K. J. & Atkins, R. E. (1963). Optimum plot size and relative
 
 Mahalanobis, P. C. (1936) On the generalized distance in statistics.
    \emph{Proceedings of The National Institute of Sciences of India}, 12:49-55.
+
+Manly, B.F.J. (2004) \emph{Multivariate statistical methods}: a primer. CRC Press.
 
 Meier, V. D. & Lessman, K. J. (1971) Estimation of optimum field plot
    shape and size for testing yield in Crambe abyssinia Hochst.

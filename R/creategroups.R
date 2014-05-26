@@ -20,14 +20,27 @@ tol = 1e-2, maxit = 200)
       if (dif <= tol)
          break()
    }
+
+   out <- list(covar = deparse(substitute(x)),
+      func = deparse(substitute(fun)),
+      val.func = sapply(s, fun), niter = iter,
+      labels = label, groups = s)
+   class(out) <- "creategroups"
+   return(out)
+}
+
+# -------------------------------------------
+# print method
+print.creategroups <- 
+function (x, digits = 4L, quote = TRUE, ...) 
+{
    cat("\nCreating homogeneous groups \n")
    cat("------------------------------------------------------------------\n")
-   cat("Covariate:",
-      deparse(substitute(x)), "\n\nGroups: \n")
-   print(label)
-   cat("Objective function (equality of):",
-      deparse(substitute(fun)), "\n")
-   print(sapply(s, fun))
-   cat("\nNumber of iterations to convergence:", iter, "\n")
-   invisible(s)
+   cat("Covariate:", x$covar, 
+      "\n\nGroups: \n")
+   print(x$labels)
+   cat("Objective function (equality of):", x$func, "\n")
+   print(x$val.func)
+   cat("\nNumber of iterations to convergence:", x$niter, "\n")
+   invisible(x)
 }
