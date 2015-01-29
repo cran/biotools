@@ -20,6 +20,7 @@ tocher(d)
 A list of 
   \item{clusters }{a list of length \emph{k} (the number of clusters),
 	 containing the labels of the objects in \code{d} for each cluster.}
+  \item{class }{a numeric vector indicating the class (the cluster) of each object in \code{d}.}
   \item{distClust }{a matrix of distances within (diagonal) and between (off-diagonal) clusters.}
   \item{d }{the input object.}
 }

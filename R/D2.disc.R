@@ -52,3 +52,37 @@ function(data, grouping, pooled.cov = NULL)
     class(out) <- "D2.disc"
     return(out)
 }
+
+# ----------------------------------------------
+# predict method
+predict.D2.disc <- function(object, newdata, ...)
+{
+    if (!inherits(object, "D2.disc"))
+       stop("'object' must be of class D2.dist!")
+    if (!inherits(newdata, c("data.frame", "matrix"))) 
+       stop("'data' must be a numeric data.frame or matrix!")
+    newdata <- as.matrix(newdata)
+    n <- nrow(newdata)
+    pooled <- object$pooled
+    p <- ncol(pooled)
+    if (ncol(newdata) != p)
+       stop("the number of columns in 'newdata' is incompatible!")
+
+    means <- object$means
+    lev <- rownames(means)
+    nlev <- length(lev)
+
+    if (length(colnames(newdata)) > 0L & any(colnames(newdata) != colnames(means))) 
+       warning("variable names (colnames) in 'newdata' do not match those in 'object'!")
+
+    dists <- matrix(NA, n, nlev, dimnames = list(rownames(newdata), lev))
+    for(i in 1:n) {
+       for(j in 1:nlev) {
+          dists[i, j] <- mahalanobis(newdata[i, ], means[j, ], pooled)
+       }
+    }
+    id <- function(x) as.factor(colnames(dists))[which.min(x)]
+    pred <- apply(dists, 1, id)
+    return(list(class = pred, D2 = dists))
+}
+

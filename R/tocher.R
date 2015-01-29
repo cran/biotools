@@ -60,10 +60,16 @@ function(d)
    }
    ng <- length(g)
    names(g) <- paste("cluster", 1:ng)
-   for(k in 1:ng) g[[k]] <- noquote(g[[k]])
+   class <- NULL
+   for(k in 1:ng) {
+      g[[k]] <- noquote(g[[k]])
+      for(i in 1:ncol(d)) {
+         if (any(lab[i] == g[[k]])) class[i] <- k
+      }
+   }
    nopc <- sapply(g, length)
    dc <- distClust(as.dist(d), nopc, unlist(g))
-   out <- list(clusters = g, distClust = dc, 
+   out <- list(clusters = g, class = class, distClust = dc, 
       d = as.dist(d))
    class(out) <- "tocher"
    return(out)

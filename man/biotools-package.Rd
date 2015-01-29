@@ -6,17 +6,17 @@
 \title{ Tools for Biometry and Applied Statistics in Agricultural Science }
 
 \description{
-This package contains tools designed to perform and work with cluster analysis, 
-discriminant analysis and path analysis (standard and with collinearity), as well as
-some useful miscellaneous tools for dealing with sample size and optimum plot size calculations.
+Tools designed to perform and work with cluster analysis (including Tocher's algorithm), discriminant analysis and path analysis 
+(standard and under collinearity), as well as some useful miscellaneous tools for dealing with sample size 
+and optimum plot size calculations.
 }
 
 \details{
 \tabular{ll}{
 Package: \tab biotools\cr
 Type: \tab Package\cr
-Version: \tab 1.2\cr
-Date: \tab 2014-05-25\cr
+Version: \tab 2.0\cr
+Date: \tab 2015-01-29\cr
 License: \tab GPL (>= 2)\cr
 }
 }

@@ -2,19 +2,19 @@ Package: biotools
 Type: Package
 Title: Tools for Biometry and Applied Statistics in Agricultural
         Science
-Version: 1.2
-Date: 2014-05-25
+Version: 2.0
+Date: 2015-01-29
 LazyLoad: yes
 LazyData: yes
 Author: Anderson Rodrigo da Silva
 Maintainer: Anderson Rodrigo da Silva <anderson.agro@hotmail.com>
 Depends: R (>= 2.15), utils, rpanel, tkrplot, MASS, boot
 Suggests: soilphysics
-Description: This package contains tools designed to perform and work with cluster analysis, 
-	discriminant analysis and path analysis (standard and with collinearity), as well as
-	some useful miscellaneous tools for dealing with sample size and optimum plot size calculations.
+Description: Tools designed to perform and work with cluster analysis (including Tocher's algorithm), 
+	discriminant analysis and path analysis (standard and under collinearity), as well as some 
+	useful miscellaneous tools for dealing with sample size and optimum plot size calculations.
 License: GPL (>= 2)
-Packaged: 2014-05-25 21:23:49 UTC; Anderson
+Packaged: 2015-01-29 16:28:24 UTC; user
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2014-05-26 01:09:46
+Date/Publication: 2015-01-29 18:07:55

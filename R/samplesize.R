@@ -39,7 +39,7 @@ function(x, fun, sizes = NULL, lcl = NULL, ucl = NULL,
        plot(n.out ~ sizes,
           type = "b",
           xlab = "Sample size",
-          ylab = "N out of CI", ...)
+          ylab = "N outside the CI", ...)
     }
 
     out <- list(CI = c(lcl, ucl),

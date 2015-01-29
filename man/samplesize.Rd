@@ -44,12 +44,12 @@ second argument only as index.
 A list of
   \item{CI }{a vector containing the lower and the upper confidence limit for the statistic evaluated.}
   \item{pointsOut }{a data frame containing the sample sizes (in \code{sizes}), the number of 
-	points out of the CI (\code{n.out}) and the proportion of this number (\code{prop}). }
+	points outside the CI (\code{n.out}) and the proportion of this number (\code{prop}). }
 }
 
 \section{Side Effects }{
 If \code{graph = TRUE}, a graphic with the dispersion of the estimates for each sample size, 
-as well as the graphic containing the number of points out of the confidence interval for 
+as well as the graphic containing the number of points outside the confidence interval for 
 the reference sample.
 }
 
