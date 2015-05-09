@@ -1,4 +1,12 @@
 ------------------------------------------------
+                version 2.1
+
+* Documentation fixes
+* new functions: mantelTest(), mantelPower()
+* new graphical output for samplesize()
+* new algorithm (sequential) for tocher()
+
+------------------------------------------------
                 version 2.0
 
 * Documentation fixes
@@ -11,8 +19,10 @@
                 version 1.2
 
 * Documentation fixes
-* S3 print method for classes: 'boxM', 'creategroups', 'pathanalysis', 'singh' and 'tocher'
-* New functions: multcor.test(), findSubsample() and D2.disc()
+* S3 print method for classes: 'boxM', 'creategroups', 
+	'pathanalysis', 'singh' and 'tocher'
+* New functions: multcor.test(), findSubsample() and 
+	D2.disc()
 
 ------------------------------------------------
                 version 1.1

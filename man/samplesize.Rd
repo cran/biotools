@@ -63,7 +63,7 @@ x = rnorm(20, 15, 2)
 cv(x)
 samplesize(x, cv)
 
-par(mfrow = c(2, 1), cex = 0.8)
+par(mfrow = c(1, 3), cex = 0.7, las = 1)
 samplesize(x, cv, lcl = 0.05, ucl = 0.20)
 abline(h = 0.05 * 500, col = "blue") # sample sizes with 5\% (or less) out CI
 

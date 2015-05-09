@@ -1,36 +1,49 @@
 tocher <-
-function(d)
+function(d, algorithm = c("original", "sequential"))
 {
    if (!inherits(d, "dist"))
       stop("'d' must be an object of class 'dist'!")
+   algorithm <- match.arg(algorithm)
    d <- as.matrix(d)
    n <- nrow(d)
+
+   # object labels
    if (is.null(dimnames(d))) {
        lab <- as.character(1:n)
        } else {
        lab <- colnames(d)
    }
    dimnames(d) <- list(lab, lab)
-   fun.min <- function(dist)
+
+   # aux function to find the two closest objects
+   fun.min <- function(mat)
    {
-      n <- ncol(dist)
+      n <- ncol(mat)
       v1 <- v2 <- NULL
-      aux <- data.frame(v1 = rep(colnames(dist), each = n),
-         v2 = rep(colnames(dist), times = n),
-         val = as.vector(dist))
+      aux <- data.frame(v1 = rep(colnames(mat), each = n),
+         v2 = rep(colnames(mat), times = n),
+         val = as.vector(mat))
       aux2 <- subset(aux, v1 != v2)
       ind <- which.min(aux2[, "val"])
       mi <- aux2[ind, c("v1", "v2")]
       return(c(as.matrix(mi)))
    }
+
+   # initial definitions (cluster 1)
    min1 <- fun.min(d)
    g <- list()
    ig <- 1
    g[[ig]] <- min1
+
+   # (original) clustering criterion
    d. <- d
    diag(d.) <- NA
    theta <- max(apply(d., 2, min, na.rm = TRUE))
+   criterion <- c()
+
+   # clustering
    repeat {
+      criterion[ig] <- theta
       newlab <- lab[-charmatch(unlist(g), lab)]
       n <- length(newlab)
       if (n < 1) break()
@@ -44,9 +57,14 @@ function(d)
       comp <- newlab[which.min(m["G", newlab])]
       if (m["G", comp] <= theta) {
          g[[ig]] <- c(g[[ig]], comp)
+      # -------------------------------------------
+      # forming a new cluster
       } else {
          ig <- ig + 1
          if (n > 1) {
+            # theta according to the algorithm
+            theta <- ifelse(algorithm == "original", theta,
+               max(apply(d.[newlab, newlab], 2, min, na.rm = TRUE)) )
             newcomp <- fun.min(d[newlab, newlab])
             if (d[newcomp[1], newcomp[2]] <= theta) {
                g[[ig]] <- newcomp
@@ -58,6 +76,8 @@ function(d)
          }
       }
    }
+
+   # output
    ng <- length(g)
    names(g) <- paste("cluster", 1:ng)
    class <- NULL
@@ -69,12 +89,12 @@ function(d)
    }
    nopc <- sapply(g, length)
    dc <- distClust(as.dist(d), nopc, unlist(g))
-   out <- list(clusters = g, class = class, distClust = dc, 
+   out <- list(clusters = g, class = class, 
+      criterion = criterion, distClust = dc, 
       d = as.dist(d))
    class(out) <- "tocher"
    return(out)
 }
-
 
 # -------------------------------------------
 # print method

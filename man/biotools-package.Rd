@@ -15,8 +15,8 @@ and optimum plot size calculations.
 \tabular{ll}{
 Package: \tab biotools\cr
 Type: \tab Package\cr
-Version: \tab 2.0\cr
-Date: \tab 2015-01-29\cr
+Version: \tab 2.1\cr
+Date: \tab 2015-05-09\cr
 License: \tab GPL (>= 2)\cr
 }
 }
