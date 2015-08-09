@@ -1,14 +1,22 @@
 \name{tocher}
 \alias{tocher}
+\alias{tocher.dist}
+\alias{print.tocher}
+\alias{cophenetic.tocher}
+\alias{coph.tocher}
 
 \title{ Tocher's Clustering }
 
 \description{
 \code{tocher} performs the Tocher (Rao, 1952) optimization clustering from a distance matrix.
+The cophenetic distance matrix for a Tocher's clustering can also be computed using the methodology proposed
+by Silva \& Dias (2013).
 }
 
 \usage{
-tocher(d, algorithm = c("original", "sequential"))
+\method{tocher}{dist}(d, algorithm = c("original", "sequential"))
+\method{print}{tocher}(x, ...)
+\method{cophenetic}{tocher}(x)
 }
 
 \arguments{
@@ -16,10 +24,14 @@ tocher(d, algorithm = c("original", "sequential"))
   \item{algorithm}{ a character indicating the algorithm to be used for clustering objects.
 	It must be one of the two: \code{"original"} (default) or \code{"sequential"}. The latter is 
 	the method proposed by Vasconcelos et al. (2007), and sometimes called "modified" Tocher.}
+  \item{x}{ an object of class \code{"tocher"}.}
+  \item{\dots}{ optional further arguments from \code{print}.}
 }
 
 \value{
-A list of 
+An object of class \code{tocher}. A list of 
+  \item{call }{the call which produced the result.}
+  \item{algorithm }{character; the algorithm that has been used as input.}
   \item{clusters }{a list of length \emph{k} (the number of clusters),
 	 containing the labels of the objects in \code{d} for each cluster.}
   \item{class }{a numeric vector indicating the class (the cluster) of each object in \code{d}.}
@@ -54,7 +66,7 @@ Anderson Rodrigo da Silva <anderson.agro@hotmail.com>
 }
 
 \seealso{
-\code{\link{dist}}, \code{\link{D2.dist}}, \code{\link{coph.tocher}}, \code{\link{distClust}}, \code{\link{hclust}}
+\code{\link{dist}}, \code{\link{D2.dist}}, \code{\link{cophenetic}}, \code{\link{distClust}}, \code{\link{hclust}}
 }
 
 \examples{
@@ -67,6 +79,10 @@ garlic$distClust  # cluster distances
 data(USArrests)
 (usa <- tocher(dist(USArrests)))
 usa$distClust
+
+# cophenetic correlation
+cophUS <- cophenetic(usa)
+cor(cophUS, dist(USArrests))
 
 # using the sequential algorithm
 (usa2 <- tocher(dist(USArrests), algorithm = "sequential"))

@@ -6,17 +6,19 @@
 \title{ Tools for Biometry and Applied Statistics in Agricultural Science }
 
 \description{
-Tools designed to perform and work with cluster analysis (including Tocher's algorithm), discriminant analysis and path analysis 
-(standard and under collinearity), as well as some useful miscellaneous tools for dealing with sample size 
-and optimum plot size calculations.
+Tools designed to perform and work with cluster analysis (including Tocher's algorithm), 
+discriminant analysis and path analysis (standard and under collinearity), as well as some 
+useful miscellaneous tools for dealing with sample size and optimum plot size calculations.
+Mantel's permutation test can be found in this package. A new approach for calculating its
+power is implemented. biotools also contains the new tests for genetic covariance components.
 }
 
 \details{
 \tabular{ll}{
 Package: \tab biotools\cr
 Type: \tab Package\cr
-Version: \tab 2.1\cr
-Date: \tab 2015-05-09\cr
+Version: \tab 2.2\cr
+Date: \tab 2015-08-08\cr
 License: \tab GPL (>= 2)\cr
 }
 }

@@ -10,6 +10,7 @@ export(D2.dist)
 export(distClust)
 export(findSubsample)
 export(fitplotsize)
+export(gencovtest)
 export(mantelTest)
 export(mantelPower)
 export(multcor.test)
@@ -21,13 +22,23 @@ export(singh)
 export(tocher)
 
 # Imports
-import(utils, rpanel, tkrplot, MASS, boot)
+import(utils, rpanel, tkrplot, MASS, boot, stats, graphics, grDevices, datasets)
 
-# S3method
+# S3methods
+S3method(tocher, dist)
+S3method(singh, default)
+S3method(D2.disc, default)
+S3method(gencovtest, manova)
+
 S3method(print, creategroups)
+S3method(print, D2.disc)
 S3method(predict, D2.disc)
 S3method(print, findSubsample)
 S3method(print, mantelTest)
 S3method(print, multcor.test)
 S3method(print, pathanalysis)
 S3method(print, tocher)
+S3method(cophenetic, tocher)
+S3method(plot, singh)
+S3method(print, gencovtest)
+S3method(plot, gencovtest)

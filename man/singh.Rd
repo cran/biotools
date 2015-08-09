@@ -1,5 +1,7 @@
 \name{singh}
 \alias{singh}
+\alias{singh.default}
+\alias{plot.singh}
 
 \title{ Importance of Variables According to the Singh (1981) Criterion }
 
@@ -10,14 +12,15 @@ of variables based on the squared generalized Mahalanobis distance.
 }
 
 \usage{
-singh(data, cov, inverted = FALSE, graph = TRUE, ...)
+\method{singh}{default}(data, cov, inverted = FALSE)
+\method{plot}{singh}(x, ...)
 }
 
 \arguments{
   \item{data}{ a data frame or matrix of data (\emph{n x p}). }
   \item{cov}{ a variance-covariance matrix (\emph{p x p}). }
   \item{inverted}{ logical. If \code{FALSE} (default), \code{cov} is supposed to be a variance-covariance matrix. }
-  \item{graph}{ logical; if \code{TRUE} (default), a pie chart containing the importance proportions is plotted. }
+  \item{x}{ an object of class \code{"singh"}. }
   \item{\dots}{ further graphical arguments. }
 }
 
@@ -25,10 +28,6 @@ singh(data, cov, inverted = FALSE, graph = TRUE, ...)
 \code{singh} returns a matrix containing the Singh statistic, the
 importance proportion and the cummulative proprtion of each
 variable (column) in data.
-}
-
-\section{Side Effects }{
-A pie chart containing the importance of the variables, if \code{graph = TRUE}.
 }
 
 \references{
@@ -53,7 +52,8 @@ x4 <- c(50.53, 50.23, 50.57, 51.97, 51.37)
 x <- cbind(x1, x2, x3, x4)
 Cov <- matrix(c(21.112,0.038,0.078,2.01, 0.038,23.486,5.2,2.844,
 	0.078,5.2,24.18,1.134, 2.01,2.844,1.134,10.154), 4, 4)
-singh(x, Cov)
+(s <- singh(x, Cov))
+plot(s)
 
 # End (not run)
 }

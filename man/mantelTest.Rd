@@ -57,7 +57,7 @@ garlic <- tocher(garlicdist)
 garlic
 
 # Cophenetic distances
-coph <- coph.tocher(garlic)
+coph <- cophenetic(garlic)
 coph
 
 # Mantel's test

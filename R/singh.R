@@ -1,5 +1,10 @@
+# S3method for "singh"
 singh <-
-function(data, cov, inverted = FALSE, graph = TRUE, ...)
+function(data, cov, inverted = FALSE) UseMethod("singh")
+
+# ---------------------------------
+singh.default <-
+function(data, cov, inverted = FALSE)
 {
    if (!inherits(data, c("data.frame", "matrix")))
       stop("data must be a data.frame or matrix!")
@@ -28,6 +33,7 @@ function(data, cov, inverted = FALSE, graph = TRUE, ...)
          stat[i, j] <- crossprod(delta[i, j] * delta[i, ], invS[, j])
       }
    }
+   # output
    out1 <- abs(apply(stat, 2, sum))
    ord <- order(out1, decreasing = TRUE)
    out1 <- out1[ord]
@@ -37,14 +43,15 @@ function(data, cov, inverted = FALSE, graph = TRUE, ...)
    rownames(out) <- c("Singh statistic", "Proportion",
       "Cumulative proportion")
    class(out) <- "singh"
-
-   if (graph) {
-      par(...)
-      lab <- paste(colnames(out), " (", round(out[2, ], 3)*100,
-         "%", ")", sep = "")
-      pie(out[2, ], labels = lab,
-         main = "Importance of variables", ...)
-   }
-
    return(out)
+}
+
+# -----------------------------------
+# plot method
+plot.singh <- function(x, ...)
+{
+   lab <- paste(colnames(x), " (", 
+      round(x[2, ], 3)*100, "%", ")", sep = "")
+   pie(x[2, ], labels = lab,
+      main = "Importance of variables", ...)
 }

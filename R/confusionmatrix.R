@@ -19,6 +19,5 @@ function(obs, predict)
          equal(subset(aux, gr == lev[i])[["newgr"]], lev[j])
       }
    }
-   class(m) <- "confusionmatrix"
    return(m)
 }

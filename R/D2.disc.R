@@ -1,4 +1,10 @@
-D2.disc <- 
+# S3 method for D2.disc
+D2.disc <-
+function(data, grouping, pooled.cov = NULL)  UseMethod("D2.disc")
+
+# --------------------------------------
+# default method
+D2.disc.default <- 
 function(data, grouping, pooled.cov = NULL) 
 {
     if (!inherits(data, c("data.frame", "matrix"))) 
@@ -7,22 +13,18 @@ function(data, grouping, pooled.cov = NULL)
         stop("incompatible dimensions!")
     data <- as.matrix(data)
     name.fac <- deparse(substitute(grouping))
-    grouping <- as.factor(as.character(grouping))
+    #name <- ifelse(is.numeric(grouping), 
+    #   paste("class", levels(as.factor(grouping)), sep = ""), 
+    #   levels(as.factor(grouping)))
+    grouping <- as.factor(grouping)
     n <- nrow(data)
     p <- ncol(data)
     nlev <- nlevels(grouping)
     lev <- levels(grouping)
 
+    # pooled cov matrix
     if (is.null(pooled.cov)) {
-       dfs <- tapply(grouping, grouping, length) - 1
-       if (any(dfs < p)) warning("such a few observations for many variables!")
-       mats <- aux <- list()
-       for (i in 1:nlev) {
-          mats[[i]] <- cov(data[grouping == lev[i], ])
-          aux[[i]] <- mats[[i]] * dfs[i]
-       }
-       names(mats) <- lev
-       pooled.cov <- Reduce("+", aux)/sum(dfs)
+       pooled.cov <- pooledCov(data, grouping)
     } else if (!is.matrix(pooled.cov)) {
        stop("'pooled.cov' must be a square matrix!")
     } else if (dim(pooled.cov)[1] != dim(pooled.cov)[2]) {
@@ -31,36 +33,59 @@ function(data, grouping, pooled.cov = NULL)
        stop("'pooled.cov' has incompatible dimensions with 'data'!")
     }
 
+    # means of each class
     med <- aggregate(data, list(grouping), mean)
     med <- as.matrix(med[, -1])
     rownames(med) <- lev
 
-    dists <- matrix(NA, n, nlev, dimnames = list(rownames(data), lev))
+    # D2 dists
+    dists <- matrix(NA, n, nlev, 
+       dimnames = list(rownames(data), lev))
     for(i in 1:n) {
        for(j in 1:nlev) {
-          dists[i, j] <- mahalanobis(data[i, ], med[j, ], pooled.cov)
+          dists[i, j] <- mahalanobis(data[i, ], 
+             med[j, ], pooled.cov)
        }
     }
 
+    # misclassifications
     id <- function(x) colnames(dists)[which.min(x)]
     pred <- apply(dists, 1, id)
     misclass <- character(n)
     for(i in 1:n) if (grouping[i] != pred[i]) misclass[i] <- "*"
     confusion <- confusionmatrix(grouping, pred)
-    out <- list(D2 = data.frame(dists, grouping, pred, misclass),
-       means = med, pooled = pooled.cov, confusion.matrix = confusion)
+
+    # output
+    out <- list(call = match.call(),
+       data = data,
+       D2 = data.frame(dists, grouping, pred, misclass),
+       means = med, 
+       pooled = pooled.cov, 
+       confusion.matrix = confusion)
     class(out) <- "D2.disc"
     return(out)
 }
 
 # ----------------------------------------------
-# predict method
-predict.D2.disc <- function(object, newdata, ...)
+# print method
+print.D2.disc <- function(x, ...)
 {
-    if (!inherits(object, "D2.disc"))
-       stop("'object' must be of class D2.dist!")
-    if (!inherits(newdata, c("data.frame", "matrix"))) 
-       stop("'data' must be a numeric data.frame or matrix!")
+   cat("\nCall:\n")
+      print(x$call)
+   cat("\nMahalanobis distances from each class and class prediction (first 6 rows):\n")
+      print(head(x$D2), ...)
+   cat("\nClass means:\n")
+      print(x$means, ...)
+   cat("\nConfusion matrix:\n")
+      print(x$confusion.matrix, ...)
+   invisible(x)
+}
+
+# ----------------------------------------------
+# predict method
+predict.D2.disc <- function(object, newdata = NULL, ...)
+{
+    if (is.null(newdata)) newdata <- object$data
     newdata <- as.matrix(newdata)
     n <- nrow(newdata)
     pooled <- object$pooled
@@ -85,4 +110,3 @@ predict.D2.disc <- function(object, newdata, ...)
     pred <- apply(dists, 1, id)
     return(list(class = pred, D2 = dists))
 }
-

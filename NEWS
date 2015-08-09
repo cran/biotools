@@ -1,4 +1,21 @@
 ------------------------------------------------
+                version 2.2
+
+* Documentation fixes
+* new function: gencovtest(), for testing genetic 
+	component of covariance
+* new data set: maize
+* S3 method for the class tocher
+* Output upgrade and new detailed print method for tocher()
+* coph.tocher() was replaced by a cophenetic method for
+	objects of class "tocher"
+* S3 method for the class "singh"
+* The argument graph was dropped from singh();
+	a plot method is available
+* S3 method for the class "D2.disc"
+* Print method for D2.disc
+
+------------------------------------------------
                 version 2.1
 
 * Documentation fixes

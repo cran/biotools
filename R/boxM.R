@@ -13,7 +13,7 @@ function(data, grouping)
    lev <- levels(grouping)
    dfs <- tapply(grouping, grouping, length) - 1
    if (any(dfs < p)) 
-      stop("there are one or more levels with less observations than variables!")
+      warning("there are one or more levels with less observations than variables!")
    mats <- aux <- list()
    for(i in 1:nlev) {
       mats[[i]] <- cov(data[grouping == lev[i], ])

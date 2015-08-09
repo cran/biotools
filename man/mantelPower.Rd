@@ -37,7 +37,7 @@ Anderson Rodrigo da Silva <anderson.agro@hotmail.com>
 # Mantel test
 data(garlicdist)
 garlic <- tocher(garlicdist)
-coph <- coph.tocher(garlic)
+coph <- cophenetic(garlic)
 mt1 <- mantelTest(garlicdist, coph, xlim = c(-1, 1))
 
 # Power calculation, H1: rho = 0.3
