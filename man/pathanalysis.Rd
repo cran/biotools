@@ -51,7 +51,7 @@ Anderson Rodrigo da Silva <anderson.agro@hotmail.com>
 
 \examples{
 data(peppercorr)
-pathanalysis(peppercorr, 6, collinearity = TRUE)
+pathanalysis(peppercorr, 6, collinearity = FALSE)
 
 # End (not run)
 }

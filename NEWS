@@ -1,4 +1,11 @@
 ------------------------------------------------
+                version 3.0
+
+* Documentation fixes
+* new function: sHe(), for spatial analysis of gene diversity
+* new data sets: moco, brazil
+
+------------------------------------------------
                 version 2.2
 
 * Documentation fixes

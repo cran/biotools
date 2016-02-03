@@ -20,15 +20,17 @@ export(raise.matrix)
 export(samplesize)
 export(singh)
 export(tocher)
+export(sHe)
 
 # Imports
-import(utils, rpanel, tkrplot, MASS, boot, stats, graphics, grDevices, datasets)
+import(utils, rpanel, tkrplot, MASS, boot, stats, graphics, grDevices, datasets, lattice, SpatialEpi)
 
 # S3methods
 S3method(tocher, dist)
 S3method(singh, default)
 S3method(D2.disc, default)
 S3method(gencovtest, manova)
+S3method(sHe, default)
 
 S3method(print, creategroups)
 S3method(print, D2.disc)
@@ -42,3 +44,5 @@ S3method(cophenetic, tocher)
 S3method(plot, singh)
 S3method(print, gencovtest)
 S3method(plot, gencovtest)
+S3method(print, sHe)
+S3method(plot, sHe)

@@ -17,8 +17,8 @@ power is implemented. biotools also contains the new tests for genetic covarianc
 \tabular{ll}{
 Package: \tab biotools\cr
 Type: \tab Package\cr
-Version: \tab 2.2\cr
-Date: \tab 2015-08-08\cr
+Version: \tab 3.0\cr
+Date: \tab 2016-02-02\cr
 License: \tab GPL (>= 2)\cr
 }
 }
