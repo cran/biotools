@@ -1,4 +1,11 @@
 ------------------------------------------------
+                version 3.1
+
+* Documentation fixes
+* Side effect of fitplotsize() wiped out
+* New reference for package citation()
+
+------------------------------------------------
                 version 3.0
 
 * Documentation fixes

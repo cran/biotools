@@ -8,6 +8,5 @@ function(plotsize, CV)
 
    fit <- nls(CV ~ a * plotsize^(-b),
       start = list(a = ini[1], b = ini[2]))
-   print(summary(fit))
-   invisible(fit)
+   fit
 }

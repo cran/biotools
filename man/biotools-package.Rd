@@ -11,14 +11,15 @@ discriminant analysis and path analysis (standard and under collinearity), as we
 useful miscellaneous tools for dealing with sample size and optimum plot size calculations.
 Mantel's permutation test can be found in this package. A new approach for calculating its
 power is implemented. biotools also contains the new tests for genetic covariance components.
+An approach for predicting spatial gene diversity is implemented.
 }
 
 \details{
 \tabular{ll}{
 Package: \tab biotools\cr
 Type: \tab Package\cr
-Version: \tab 3.0\cr
-Date: \tab 2016-02-02\cr
+Version: \tab 3.1\cr
+Date: \tab 2017-05-25\cr
 License: \tab GPL (>= 2)\cr
 }
 }
@@ -62,6 +63,10 @@ Rao, R.C. \emph{Advanced statistical methods in biometric research}. New York:
 
 Sharma, J.R. (2006) \emph{Statistical and biometrical techniques in plant breeding}.
    Delhi: New Age International.
+
+da Silva, A.R.; Malafaia, G.; Menezes, I.P.P. (2017) biotools: an R function to predict 
+   spatial gene diversity via an individual-based approach. \emph{Genetics and Molecular Research}, 
+   16: gmr16029655. 
 
 Silva, A.R. & Dias, C.T.S. (2013) A cophenetic correlation coefficient for
    Tocher's method. \emph{Pesquisa Agropecuaria Brasileira}, 48:589-596.

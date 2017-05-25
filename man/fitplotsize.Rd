@@ -25,10 +25,6 @@ fitplotsize(plotsize, CV)
 A \code{\link{nls}} output.
 }
 
-\section{Side Effects }{
-A summary table (\code{\link{summary.nls}}), if convergence is achieved.
-}
-
 \references{
 Lessman, K. J. & Atkins, R. E. (1963) Optimum plot size and relative
    efficiency of lattice designs for grain sorghum yield tests.

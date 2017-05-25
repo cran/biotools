@@ -48,6 +48,10 @@ A list of
 }
 
 \references{
+da Silva, A.R.; Malafaia, G.; Menezes, I.P.P. (2017) biotools: an R function to predict 
+   spatial gene diversity via an individual-based approach. \emph{Genetics and Molecular Research}, 
+   \bold{16}: gmr16029655.
+
 Manel, S., Berthoud, F., Bellemain, E., Gaudeul, M., Luikart, G., Swenson, J.E., Waits, L.P., 
 	Taberlet, P.; Intrabiodiv Consortium. (2007) A new individual-based spatial approach for 
 	identifying genetic discontinuities in natural populations. \emph{Molecular Ecology}, \bold{16}:2031-2043.

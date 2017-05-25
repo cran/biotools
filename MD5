@@ -1,6 +1,6 @@
-58c63c8b08a89392dffdf7bb4f4aad6d *DESCRIPTION
+64b033c91357c4f793548e61357b6df9 *DESCRIPTION
 62c4b3566315190ee7f78bd633424864 *NAMESPACE
-9993608b59ae12f29b9d048070818726 *NEWS
+ba0d272cf635cfe1d1fd061d607cd0aa *NEWS
 c7a5967b59fadb7b61451942f4c17e79 *R/D2.disc.R
 4f973283470cbe2b4727c84093f6a182 *R/D2.dist.R
 fa046da175919f2adc8de990a5a5ac19 *R/aer.R
@@ -10,7 +10,7 @@ e5e64a1f0f0bc531fc23651ad42800e9 *R/cov2pcov.R
 797dcc10c1ebefe15a75da8cf14964b8 *R/creategroups.R
 b454da47fe885960f3dfd5055048640c *R/distClust.R
 de66b0714fdd3dc0f092c3184aebf6cc *R/findSubsample.R
-6ac21ec99238c289961e96f2db192ac9 *R/fitplotsize.R
+67c7893c19a4b80c74c9a4c16f564b7a *R/fitplotsize.R
 11ca25de3d1cfe6fe72bf346c5ee6db9 *R/gencovtest.r
 2cfa60136c8ecb95428d147229e0b4c6 *R/mantelPower.R
 89bd8c90632057f690b853e26978c1d4 *R/mantelTest.R
@@ -29,10 +29,11 @@ df5bba28b9d7ad745940dbe77579d556 *R/zz.R
 e8751246d098226bf98746b93044df1e *data/maize.rda
 10f6c7be88052e711d172aa6094100bf *data/moco.rda
 7ec79eb4e217e7742782ca5c6438a400 *data/peppercorr.rda
+6a4fdb0a4b942169cdf658121ee7878c *inst/CITATION
 74fae88054e29d0aa72b1ad69fcde792 *man/D2.disc.Rd
 7f7814bd9db3d85fa5c9f7624216db71 *man/D2.dist.Rd
 59fae18d00580192f018bd7198cba380 *man/aer.Rd
-f1f405dc03dd95f7dfbab2b68b44020f *man/biotools-package.Rd
+e1f9cd3b343b4b8a9c1cdb0b6845ccd0 *man/biotools-package.Rd
 e03e7ef7cd1fdeb02ad32657334df81e *man/boxM.Rd
 d0b7b0ef7d4c95873fed6633f19e8cbd *man/brazil.Rd
 5b9948199858efb2ee2ebd429191f509 *man/confusionmatrix.Rd
@@ -40,7 +41,7 @@ d0b7b0ef7d4c95873fed6633f19e8cbd *man/brazil.Rd
 b5a42f445830b71d719b2d12342df8a2 *man/creategroups.Rd
 e0361ee5c7c2b39b165c3ce78f62bb1d *man/distClust.Rd
 e4484c47bb8b223c605888ff4b580c2b *man/findSubsample.Rd
-3551584f6665fe1f2aa5cc86af8d038c *man/fitplotsize.Rd
+8beb4c4e439c2516d92107a8217ef148 *man/fitplotsize.Rd
 e277ef131bcc4925f43efbdaeda0a6e6 *man/garlicdist.Rd
 7c50cd53c9f53e966445d1994c77245f *man/gencovtest.Rd
 f8889775e3724ed3675f6fe11a34c1e4 *man/maize.Rd
@@ -52,7 +53,7 @@ e59f78666d85a4dcef715e066099cef0 *man/multcor.test.Rd
 21420cbbe4906a2bb0f30843001acb27 *man/pathanalysis.Rd
 e753c95936faa845938d54bf9e9595f1 *man/peppercorr.Rd
 a325fdf1eac7df6ed927dd17f3fc138f *man/raise.matrix.rd
-f08c5d50edf42964dcb41e1585f45767 *man/sHe.Rd
+a2d8af0ea3b3907f0e9166ae68fc4289 *man/sHe.Rd
 df31c2403781b45d25bba062f395d8d6 *man/samplesize.Rd
 0956135caa22c0f3cfeca44259c77887 *man/singh.Rd
 3aa43a9c823953e0e8f39aae259f9158 *man/tocher.Rd
