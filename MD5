@@ -1,6 +1,6 @@
-329995523c973068fa8a206a49e07f41 *DESCRIPTION
-9cb90b06891c0eeda0a11fb192d91914 *NAMESPACE
-1a92e67e7c6980ddd804c532d5dad27c *NEWS
+3f3160201b89184ee4ceacc71b767c95 *DESCRIPTION
+8e903168bf4441643e55a250a0ef7b83 *NAMESPACE
+7c9e60f226e642532b3b0ba0becaad31 *NEWS
 c7a5967b59fadb7b61451942f4c17e79 *R/D2.disc.R
 4f973283470cbe2b4727c84093f6a182 *R/D2.dist.R
 fa046da175919f2adc8de990a5a5ac19 *R/aer.R
@@ -16,6 +16,7 @@ de66b0714fdd3dc0f092c3184aebf6cc *R/findSubsample.R
 2cfa60136c8ecb95428d147229e0b4c6 *R/mantelPower.R
 89bd8c90632057f690b853e26978c1d4 *R/mantelTest.R
 b7cec9582bb8f1c5b80c18e623174074 *R/multcor.test.r
+fa545b12135718787f7f2cfc4b965b19 *R/mvpaircomp.R
 3a6b7b103d9977cc87efea782360d46c *R/optimumplotsize.R
 a858cf08940d12c8e2f0d96c437aa01a *R/pathanalysis.R
 684fe9a1b7a36e8be26d8a453678c8db *R/raise.matrix.r
@@ -31,11 +32,11 @@ df5bba28b9d7ad745940dbe77579d556 *R/zz.R
 e8751246d098226bf98746b93044df1e *data/maize.rda
 10f6c7be88052e711d172aa6094100bf *data/moco.rda
 7ec79eb4e217e7742782ca5c6438a400 *data/peppercorr.rda
-7b7cf0ec6f6c3dbf0b7cf6b54d76b8ed *inst/CITATION
+2a2ab7f27ea344431dddf1bf830d0893 *inst/CITATION
 74fae88054e29d0aa72b1ad69fcde792 *man/D2.disc.Rd
 7f7814bd9db3d85fa5c9f7624216db71 *man/D2.dist.Rd
 59fae18d00580192f018bd7198cba380 *man/aer.Rd
-f27b095687af4432231d1542a69a7afa *man/biotools-package.Rd
+301e380864e90e646cf06c1463294dcc *man/biotools-package.Rd
 e03e7ef7cd1fdeb02ad32657334df81e *man/boxM.Rd
 d0b7b0ef7d4c95873fed6633f19e8cbd *man/brazil.Rd
 5b9948199858efb2ee2ebd429191f509 *man/confusionmatrix.Rd
@@ -52,6 +53,7 @@ d4a83bafc476b96e6cdf7d73780bed90 *man/mantelPower.Rd
 7993f96a24f78236734eba961f3b45f9 *man/mantelTest.Rd
 dcd1246be077c3c7577cb268bff503d7 *man/moco.Rd
 e59f78666d85a4dcef715e066099cef0 *man/multcor.test.Rd
+02689e9e460e60ac1d29274340c37fbb *man/mvpaircomp.Rd
 180a6ae9083334568d0bd6c99df6740f *man/optimumplotsize.Rd
 21420cbbe4906a2bb0f30843001acb27 *man/pathanalysis.Rd
 e753c95936faa845938d54bf9e9595f1 *man/peppercorr.Rd
