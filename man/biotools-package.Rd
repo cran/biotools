@@ -19,8 +19,8 @@ spatial gene diversity are implemented.
 \tabular{ll}{
 Package: \tab biotools\cr
 Type: \tab Package\cr
-Version: \tab 4.1\cr
-Date: \tab 2021-04-07\cr
+Version: \tab 4.2\cr
+Date: \tab 2021-08-06\cr
 License: \tab GPL (>= 2)\cr
 }
 }
