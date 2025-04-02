@@ -1,258 +1,392 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>About</title>
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<script type="text/javascript">
-window.onload = function() {
-  var imgs = document.getElementsByTagName('img'), i, img;
-  for (i = 0; i < imgs.length; i++) {
-    img = imgs[i];
-    // center an image if it is the only element of its parent
-    if (img.parentElement.childElementCount === 1)
-      img.parentElement.style.textAlign = 'center';
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Anderson R da Silva" />
+
+<meta name="date" content="2025-04-02" />
+
+<title>biotools: an overview</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
   }
-};
+});
 </script>
 
-<!-- Styles for R syntax highlighter -->
 <style type="text/css">
-   pre .operator,
-   pre .paren {
-     color: rgb(104, 118, 135)
-   }
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
-   pre .literal {
-     color: #990073
-   }
 
-   pre .number {
-     color: #099;
-   }
 
-   pre .comment {
-     color: #998;
-     font-style: italic
-   }
-
-   pre .keyword {
-     color: #900;
-     font-weight: bold
-   }
-
-   pre .identifier {
-     color: rgb(0, 0, 0);
-   }
-
-   pre .string {
-     color: #d14;
-   }
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
 </style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 
-<!-- R syntax highlighter -->
-<script type="text/javascript">
-var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
-hljs.initHighlightingOnLoad();
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
 </script>
 
-<!-- MathJax scripts -->
-<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
 
 
-<style type="text/css">
-body, td {
-   font-family: sans-serif;
-   background-color: white;
-   font-size: 13px;
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
 }
-
-body {
-  max-width: 800px;
-  margin: auto;
-  padding: 1em;
-  line-height: 20px;
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
 }
-
-tt, code, pre {
-   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
 }
-
-h1 {
-   font-size:2.2em;
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
 }
-
-h2 {
-   font-size:1.8em;
+#TOC ul ul {
+margin-left: -2em;
 }
-
-h3 {
-   font-size:1.4em;
+#TOC li {
+line-height: 16px;
 }
-
-h4 {
-   font-size:1.0em;
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
 }
-
-h5 {
-   font-size:0.9em;
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
 }
-
-h6 {
-   font-size:0.8em;
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
 }
-
-a:visited {
-   color: rgb(50%, 0%, 50%);
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
 }
-
-pre, img {
-  max-width: 100%;
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
 }
 pre {
-  overflow-x: auto;
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
 }
-pre code {
-   display: block; padding: 0.5em;
+pre:not([class]) {
+background-color: #f7f7f7;
 }
-
 code {
-  font-size: 92%;
-  border: 1px solid #ccc;
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
 }
-
-code[class] {
-  background-color: #F8F8F8;
+p > code, li > code {
+padding: 2px 0px;
 }
-
-table, td, th {
-  border: none;
+div.figure {
+text-align: center;
 }
-
-blockquote {
-   color:#666666;
-   margin:0;
-   padding-left: 1em;
-   border-left: 0.5em #EEE solid;
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
 }
-
-hr {
-   height: 0px;
-   border-bottom: none;
-   border-top-width: thin;
-   border-top-style: dotted;
-   border-top-color: #999999;
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
 }
-
-@media print {
-   * {
-      background: transparent !important;
-      color: black !important;
-      filter:none !important;
-      -ms-filter: none !important;
-   }
-
-   body {
-      font-size:12pt;
-      max-width:100%;
-   }
-
-   a, a:visited {
-      text-decoration: underline;
-   }
-
-   hr {
-      visibility: hidden;
-      page-break-before: always;
-   }
-
-   pre, blockquote {
-      padding-right: 1em;
-      page-break-inside: avoid;
-   }
-
-   tr, img {
-      page-break-inside: avoid;
-   }
-
-   img {
-      max-width: 100% !important;
-   }
-
-   @page :left {
-      margin: 15mm 20mm 15mm 10mm;
-   }
-
-   @page :right {
-      margin: 15mm 10mm 15mm 20mm;
-   }
-
-   p, h2, h3 {
-      orphans: 3; widows: 3;
-   }
-
-   h2, h3 {
-      page-break-after: avoid;
-   }
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
 }
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
+
 
 
 
 </head>
 
 <body>
+
+
+
+
+<h1 class="title toc-ignore">biotools: an overview</h1>
+<h4 class="author">Anderson R da Silva</h4>
+<h4 class="date">2025-04-02</h4>
+
+
+
+<div id="about" class="section level1">
 <h1>About</h1>
-
-<p><em>biotools</em> has implementations to perform and work with cluster analysis, especially Tocher&#39;s method, and tools for evaluating clustering outcomes, such as a specific coefficient of cophenetic correlation, discriminant analysis, the Box&#39;M test and the Mantel&#39;s permutation test. A new approach for calculating the power of Mantel&#39;s test is implemented. Some of those are illustrated in the next sections.</p>
-
-<p>Target audience: agronomists, biologists and researchers of related fields.</p>
-
+<p><em>biotools</em> has implementations to perform and work with
+cluster analysis, especially Tocher’s method, and tools for evaluating
+clustering outcomes, such as a specific coefficient of cophenetic
+correlation, discriminant analysis, the Box’M test and the Mantel’s
+permutation test. A new approach for calculating the power of Mantel’s
+test is implemented. Some of those are illustrated in the next
+sections.</p>
+<p>Target audience: agronomists, biologists and researchers of related
+fields.</p>
+<div id="installation" class="section level2">
 <h2>Installation</h2>
-
-<p>You can install the released version on CRAN or the beta version from GitHub:</p>
-
-<pre><code class="r">install.packages(&quot;biotools&quot;)
-devtools::install_github(&quot;arsilva87/biotools&quot;)
-</code></pre>
-
+<p>You can install the released version on CRAN or the beta version from
+GitHub:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;biotools&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;arsilva87/biotools&quot;</span>)</span></code></pre></div>
 <p>Load it:</p>
-
-<pre><code class="r">library(biotools)
-</code></pre>
-
-<pre><code>## Loading required package: MASS
-</code></pre>
-
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(biotools)</span></code></pre></div>
+<pre><code>## Loading required package: MASS</code></pre>
 <pre><code>## ---
-## biotools version 4.2
-</code></pre>
-
+## biotools version 4.3</code></pre>
+</div>
+</div>
+<div id="multivariate-pairwise-comparisons" class="section level1">
 <h1>Multivariate pairwise comparisons</h1>
-
-<p>Take the data set <code>maize</code> from biotools. They consist of multivariate observations on ears of five maize genotypes (families).</p>
-
-<pre><code class="r">data(maize)
-head(maize)   # firts 6 rows
-</code></pre>
-
+<p>Take the data set <code>maize</code> from biotools. They consist of
+multivariate observations on ears of five maize genotypes
+(families).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(maize)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(maize)   <span class="co"># firts 6 rows</span></span></code></pre></div>
 <pre><code>##       NKPR       ED       CD       PH family env
 ## 1 36.02031 4.333750 2.317500 2.087813      1   1
 ## 2 34.24688 4.045000 2.251250 1.892187      2   1
 ## 3 28.12656 3.741250 2.141250 2.119375      3   1
 ## 4 30.72500 4.321875 2.288125 2.085000      4   1
 ## 5 34.00625 4.660000 2.500625 2.100312      5   1
-## 6 36.50000 4.328750 2.436250 2.196875      1   2
-</code></pre>
-
-<p>Let us fit a MANOVA model and test for statistical significance of &#39;family&#39; using Wilks&#39; lambda.</p>
-
-<pre><code class="r">M &lt;- lm(cbind(NKPR, ED, CD) ~ family, data = maize)
-anova(M, test = &quot;Wilks&quot;)
-</code></pre>
-
+## 6 36.50000 4.328750 2.436250 2.196875      1   2</code></pre>
+<p>Let us fit a MANOVA model and test for statistical significance of
+‘family’ using Wilks’ lambda.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">cbind</span>(NKPR, ED, CD) <span class="sc">~</span> family, <span class="at">data =</span> maize)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(M, <span class="at">test =</span> <span class="st">&quot;Wilks&quot;</span>)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ##             Df    Wilks approx F num Df den Df  Pr(&gt;F)    
@@ -260,14 +394,13 @@ anova(M, test = &quot;Wilks&quot;)
 ## family       4 0.100255      4.0     12 34.686 0.00066 ***
 ## Residuals   15                                            
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-</code></pre>
-
-<p>Now, one question is <strong>where</strong> are those differences? To answer that, multiple pairwise tests can be run. The function <code>mvpaircomp()</code> allows on to choose between multivariate statistics such as Wilks&#39; lambda, Pillai&#39;s trace etc. to perform multiple tests on factor levels a fitted model.</p>
-
-<pre><code class="r">mvpaircomp(M, &quot;family&quot;, test = &quot;Wilks&quot;, adjust = &quot;bonferroni&quot;)
-</code></pre>
-
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Now, one question is <strong>where</strong> are those differences? To
+answer that, multiple pairwise tests can be run. The function
+<code>mvpaircomp()</code> allows on to choose between multivariate
+statistics such as Wilks’ lambda, Pillai’s trace etc. to perform
+multiple tests on factor levels a fitted model.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mvpaircomp</span>(M, <span class="st">&quot;family&quot;</span>, <span class="at">test =</span> <span class="st">&quot;Wilks&quot;</span>, <span class="at">adjust =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##             Multivariate Pairwise Comparisons
 ## 
@@ -284,100 +417,124 @@ anova(M, test = &quot;Wilks&quot;)
 ## 4 - 5 0.80370   1.0584      3     13 1.000000   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## With bonferroni p-value adjustment for multiple comparisons
-</code></pre>
-
-<h2>Box&#39;s M-test</h2>
-
-<p>One requirement of the model fitted earlier is that is residual covariance matrices of the factor levels are homogeneous. Furthermore, in cluster analysis, it might be of interest to check if the covariance matrices of the clusters can be considered equals, especially if one intends to perform a linear discriminant analysis using a pooled matrix.In those cases, the Box&#39;s M-test can be applied. The function <code>boxM()</code> performs the test using an approximation of the \(\chi^2_\nu\) distribution, where \(\nu = \frac{p(p+1)(k-1)}{2}\), \(p\) is the number of variables and \(k\) is the number of levels. </p>
-
-<p>Users should be aware that all clusters must have a positive definite covariance matrix. If there is any cluster/level containing fewer observations (rows) than the number of variables (columns), then its covariance matrix is probably not positive definite.</p>
-
-<pre><code class="r">res &lt;- residuals(M)
-boxM(data = res, grouping = maize$family)
-</code></pre>
-
+## With bonferroni p-value adjustment for multiple comparisons</code></pre>
+<div id="boxs-m-test" class="section level2">
+<h2>Box’s M-test</h2>
+<p>One requirement of the model fitted earlier is that is residual
+covariance matrices of the factor levels are homogeneous. Furthermore,
+in cluster analysis, it might be of interest to check if the covariance
+matrices of the clusters can be considered equals, especially if one
+intends to perform a linear discriminant analysis using a pooled
+matrix.In those cases, the Box’s M-test can be applied. The function
+<code>boxM()</code> performs the test using an approximation of the
+<span class="math inline">\(\chi^2_\nu\)</span> distribution, where
+<span class="math inline">\(\nu = \frac{p(p+1)(k-1)}{2}\)</span>, <span class="math inline">\(p\)</span> is the number of variables and <span class="math inline">\(k\)</span> is the number of levels.</p>
+<p>Users should be aware that all clusters must have a positive definite
+covariance matrix. If there is any cluster/level containing fewer
+observations (rows) than the number of variables (columns), then its
+covariance matrix is probably not positive definite.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">residuals</span>(M)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxM</span>(<span class="at">data =</span> res, <span class="at">grouping =</span> maize<span class="sc">$</span>family)</span></code></pre></div>
 <pre><code>## 
 ##  Box&#39;s M-test for Homogeneity of Covariance Matrices
 ## 
 ## data:  res
-## Chi-Sq (approx.) = 32.517, df = 24, p-value = 0.1147
-</code></pre>
-
-<h1>Importance of variables: the Singh&#39;s criterion</h1>
-
-<p>The function singh() runs the method proposed by Singh (1981) for determining the importance of variables based on the squared generalized Mahalanobis distance. In his approach, the importance of the \(j\)-th variable (\(j = 1, 2, &hellip;, p\)) on the calculation of the distance matrix can be obtained by:</p>
-
-<p>\[
-    S_{.j} = \sum_{i=1}^{n-1} \sum_{i'>i}^{n} (x_{ij} - x_{i'j}) ({\bf x}_i - {\bf x}_{i'})^T {\Sigma}_{.j}^{-1} 
-\]</p>
-
-<p>\noindent where \(x_{ij}\) and \(x_{i'j}\) are the observation taken at the \(i\)-th and \(i'\)-th objects (individuals) for the \(j\)-th variable, \({\bf x}_i\) is the \(p\)-variate vector of the \(i\)-th object and \({\Sigma}_{.j}^{-1}\) is the \(j\)-th column of the inverse of the covariance matrix.</p>
-
-<p>Since \(S_{.j}\) is itself a measure of distance, it can be more appropriate to take the following proportion instead:</p>
-
-<p>\[
+## Chi-Sq (approx.) = 32.517, df = 24, p-value = 0.1147</code></pre>
+</div>
+</div>
+<div id="importance-of-variables-the-singhs-criterion" class="section level1">
+<h1>Importance of variables: the Singh’s criterion</h1>
+<p>The function singh() runs the method proposed by Singh (1981) for
+determining the importance of variables based on the squared generalized
+Mahalanobis distance. In his approach, the importance of the <span class="math inline">\(j\)</span>-th variable (<span class="math inline">\(j = 1, 2, ..., p\)</span>) on the calculation of
+the distance matrix can be obtained by:</p>
+<p><span class="math display">\[
+    S_{.j} = \sum_{i=1}^{n-1} \sum_{i&#39;&gt;i}^{n} (x_{ij} -
+x_{i&#39;j}) ({\bf x}_i - {\bf x}_{i&#39;})^T {\Sigma}_{.j}^{-1}
+\]</span></p>
+<p>where <span class="math inline">\(x_{ij}\)</span> and <span class="math inline">\(x_{i&#39;j}\)</span> are the observation taken at
+the <span class="math inline">\(i\)</span>-th and <span class="math inline">\(i&#39;\)</span>-th objects (individuals) for the
+<span class="math inline">\(j\)</span>-th variable, <span class="math inline">\({\bf x}_i\)</span> is the <span class="math inline">\(p\)</span>-variate vector of the <span class="math inline">\(i\)</span>-th object and <span class="math inline">\({\Sigma}_{.j}^{-1}\)</span> is the <span class="math inline">\(j\)</span>-th column of the inverse of the
+covariance matrix.</p>
+<p>Since <span class="math inline">\(S_{.j}\)</span> is itself a measure
+of distance, it can be more appropriate to take the following proportion
+instead:</p>
+<p><span class="math display">\[
         \frac{S_{.j}} {\sum_{j=1}^{p} S_{.j}} \in [0, 1]
-\]</p>
-
-<p>\noindent with the constraint \(\sum_{j=1}^{p} S_{.j} = \sum_{i=1}^{n-1} \sum_{i'>i}^{n} D_{ii'}^2\). </p>
-
-<p>Using the proportion enable us to determine the relative importance of each variable.</p>
-
+\]</span></p>
+<p>with the constraint <span class="math inline">\(\sum_{j=1}^{p} S_{.j}
+= \sum_{i=1}^{n-1} \sum_{i&#39;&gt;i}^{n} D_{ii&#39;}^2\)</span>.</p>
+<p>Using the proportion enable us to determine the relative importance
+of each variable.</p>
+<div id="example" class="section level3">
 <h3>Example</h3>
-
-<p>Using the residual covariance of the fitted MANOVA model, let us calculate the importance of the three variables to discriminating observations.</p>
-
-<pre><code class="r">s &lt;- singh(data = maize[, 1:3], cov = cov(res))
-s
-</code></pre>
-
+<p>Using the residual covariance of the fitted MANOVA model, let us
+calculate the importance of the three variables to discriminating
+observations.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">singh</span>(<span class="at">data =</span> maize[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">cov =</span> <span class="fu">cov</span>(res))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>s</span></code></pre></div>
 <pre><code>##                                 ED        NKPR           CD
 ## Singh statistic       2292.2558745 485.7898274 187.46962697
 ## Proportion               0.7729705   0.1638130   0.06321654
 ## Cumulative proportion    0.7729705   0.9367835   1.00000000
 ## attr(,&quot;class&quot;)
-## [1] &quot;singh&quot;
-</code></pre>
-
-<pre><code class="r">plot(s)
-</code></pre>
-
-<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-7"/></p>
-
-<h1>Tocher&#39;s clustering</h1>
-
-<p>Cluster analysis consists of arranging multivariate observations into homogeneous clusters. There are several algorithms for cluster analysis, with different outcomes and objective functions. Tocher&#39;s optimization method allows one to establish mutually exclusive clusters, with no need to define the number of clusters. It has been widely used in studies of genetic/phenotypic diversity that are based on cluster analysis. Furthermore, Tocher&#39;s method can be used to determine the number of clusters in dendrograms.</p>
-
-<p>Clusters are established according to an objective function that adopts an optimization criterion, which minimizes the average intra-cluster distance and maximizes the average inter-cluster distances (Silva &amp; Dias, 2013). <strong>biotools</strong> contains the method suggested by K.D. Tocher (Rao, 1952) for clustering objects, based on the algorithm:</p>
-
-<ol>
-<li>(Input) Take a distance matrix, let us say \({\bf d}\), of size \(n\).</li>
-<li>Define a clustering criterion, that is, a limit of distance at which to evaluate the inclusion of objects in a cluster in formation. Usually, this criterion is defined as follows: let \({\bf m}\) be a vector of size \(n\) containing the smallest distances involving each object, then take \(\theta = \max{({\bf m})}\) to be the clustering criterion.</li>
-<li>Locate the pair of objects with the smallest distance in \({\bf d}\) to be the starting cluster.</li>
-<li>Compute the average distance (\(d_{k(j)}\)) of the starting cluster, say \(k\), to a certain object, say \(j\), that shows the smallest pairwise distance with each object in the starting cluster.</li>
-<li>Compare the statistic evaluated at the step 4 with \(\theta\). Then, add the new object to the starting cluster if \(d_{k(j)} \leq \theta\). Otherwise, go to step 3 not considering the objects already clustered and start a new cluster.</li>
+## [1] &quot;singh&quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(s)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+</div>
+<div id="tochers-clustering" class="section level1">
+<h1>Tocher’s clustering</h1>
+<p>Cluster analysis consists of arranging multivariate observations into
+homogeneous clusters. There are several algorithms for cluster analysis,
+with different outcomes and objective functions. Tocher’s optimization
+method allows one to establish mutually exclusive clusters, with no need
+to define the number of clusters. It has been widely used in studies of
+genetic/phenotypic diversity that are based on cluster analysis.
+Furthermore, Tocher’s method can be used to determine the number of
+clusters in dendrograms.</p>
+<p>Clusters are established according to an objective function that
+adopts an optimization criterion, which minimizes the average
+intra-cluster distance and maximizes the average inter-cluster distances
+(Silva &amp; Dias, 2013). <strong>biotools</strong> contains the method
+suggested by K.D. Tocher (Rao, 1952) for clustering objects, based on
+the algorithm:</p>
+<ol style="list-style-type: decimal">
+<li>(Input) Take a distance matrix, let us say <span class="math inline">\({\bf d}\)</span>, of size <span class="math inline">\(n\)</span>.</li>
+<li>Define a clustering criterion, that is, a limit of distance at which
+to evaluate the inclusion of objects in a cluster in formation. Usually,
+this criterion is defined as follows: let <span class="math inline">\({\bf m}\)</span> be a vector of size <span class="math inline">\(n\)</span> containing the smallest distances
+involving each object, then take <span class="math inline">\(\theta =
+\max{({\bf m})}\)</span> to be the clustering criterion.</li>
+<li>Locate the pair of objects with the smallest distance in <span class="math inline">\({\bf d}\)</span> to be the starting cluster.</li>
+<li>Compute the average distance (<span class="math inline">\(d_{k(j)}\)</span>) of the starting cluster, say
+<span class="math inline">\(k\)</span>, to a certain object, say <span class="math inline">\(j\)</span>, that shows the smallest pairwise
+distance with each object in the starting cluster.</li>
+<li>Compare the statistic evaluated at the step 4 with <span class="math inline">\(\theta\)</span>. Then, add the new object to the
+starting cluster if <span class="math inline">\(d_{k(j)} \leq
+\theta\)</span>. Otherwise, go to step 3 not considering the objects
+already clustered and start a new cluster.</li>
 </ol>
-
-<p>The process continues until the last remaining object is evaluated and either included in the last cluster formed or allocated to a new cluster. The function <code>tocher()</code> performs optimization clustering and returns an object of class <code>tocher</code>, which contains the clusters formed, a numeric vector indicating the cluster of each object, a matrix of cluster distances and also the input - a class <code>dist</code> object.</p>
-
+<p>The process continues until the last remaining object is evaluated
+and either included in the last cluster formed or allocated to a new
+cluster. The function <code>tocher()</code> performs optimization
+clustering and returns an object of class <code>tocher</code>, which
+contains the clusters formed, a numeric vector indicating the cluster of
+each object, a matrix of cluster distances and also the input - a class
+<code>dist</code> object.</p>
+<div id="example-1" class="section level3">
 <h3>Example</h3>
-
-<p>The 20 individuals (observation) from the maize data set are to be clustered. First, we need to comput the Mahalanobis generalized squared distance among them.</p>
-
-<pre><code class="r">d &lt;- D2.dist(data = maize[, 1:3], cov = cov(res))
-range(d)
-</code></pre>
-
-<pre><code>## [1]  0.2203346 61.4121118
-</code></pre>
-
-<p>Then Tocher&#39;s method can be applied to determine clusters. For that we are using modified method (sequential algorithm) by Vasconcelos et al. (2007) and the residual covariance matrix.</p>
-
-<pre><code class="r">toc &lt;- tocher(d, algorithm = &quot;sequential&quot;)
-toc
-</code></pre>
-
+<p>The 20 individuals (observation) from the maize data set are to be
+clustered. First, we need to comput the Mahalanobis generalized squared
+distance among them.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">D2.dist</span>(<span class="at">data =</span> maize[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">cov =</span> <span class="fu">cov</span>(res))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(d)</span></code></pre></div>
+<pre><code>## [1]  0.2203346 61.4121118</code></pre>
+<p>Then Tocher’s method can be applied to determine clusters. For that
+we are using modified method (sequential algorithm) by Vasconcelos et
+al. (2007) and the residual covariance matrix.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>toc <span class="ot">&lt;-</span> <span class="fu">tocher</span>(d, <span class="at">algorithm =</span> <span class="st">&quot;sequential&quot;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>toc</span></code></pre></div>
 <pre><code>## 
 ##           Tocher&#39;s Clustering 
 ## 
@@ -405,102 +562,113 @@ toc
 ## [1] 1  11 14
 ## 
 ## $`cluster 6`
-## [1] 18
-</code></pre>
-
+## [1] 18</code></pre>
+</div>
+<div id="cluster-distances" class="section level2">
 <h2>Cluster distances</h2>
-
-<p>After obtaining the clusters, it might be useful to know how divergent they are from each other. In this context, cluster distances are calculated from the original distance matrix through the function <code>distClust()</code>. An intracluster distance is calculated by averaging all pairwise distances among objects in the cluster concerned. Likewise, the distance between two clusters is calculated by averaging all pairwise distances among objects in these clusters.</p>
-
-<pre><code class="r">print(toc$distClust, digits = 2)
-</code></pre>
-
+<p>After obtaining the clusters, it might be useful to know how
+divergent they are from each other. In this context, cluster distances
+are calculated from the original distance matrix through the function
+<code>distClust()</code>. An intracluster distance is calculated by
+averaging all pairwise distances among objects in the cluster concerned.
+Likewise, the distance between two clusters is calculated by averaging
+all pairwise distances among objects in these clusters.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(toc<span class="sc">$</span>distClust, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##           cluster 1 cluster 2 cluster 3 cluster 4 cluster 5 cluster 6
 ## cluster 1       3.6      14.3      11.8      15.4       9.9      29.6
 ## cluster 2      14.3       3.7      27.7      13.9      25.4       7.1
 ## cluster 3      11.8      27.7       3.5      15.1       7.5      41.1
 ## cluster 4      15.4      13.9      15.1       4.8      21.1      13.4
 ## cluster 5       9.9      25.4       7.5      21.1      12.6      42.9
-## cluster 6      29.6       7.1      41.1      13.4      42.9       0.0
-</code></pre>
-
+## cluster 6      29.6       7.1      41.1      13.4      42.9       0.0</code></pre>
+</div>
+<div id="cophenetic-correlation" class="section level2">
 <h2>Cophenetic correlation</h2>
-
-<p>Clustering validation is widely applied for hierarchical and iterative methods. Some measures of internal validation for a Tocher&#39;s clustering outcome are implemented on biotools.</p>
-
-<p>The approach presented by Silva (2013) is implemented by taking the cluster distances in order to build a cophenetic matrix for clustering performed through the Tocher&#39;s method. Their approach consists of taking the cophenetic distance among objects located in the same cluster as the intracluster distance and the cophenetic distance between objects of different clusters as the intercluster distance. Then, the Pearson&#39;s correlation between the elements of the original and cophenetic matrix can be taken as a cophenetic correlation. The function to be called is <code>cophenetic()</code>, whose input is an object of class <code>tocher</code> and its output an object of class <code>dist</code>.</p>
-
-<pre><code class="r">cop &lt;- cophenetic(toc)  # cophenetic matrix
-cor(d, cop)             # cophenetic correlation coefficient
-</code></pre>
-
-<pre><code>## [1] 0.7320551
-</code></pre>
-
-<h2>Mantel&#39;s test</h2>
-
-<p><strong>Is that cophenetic correlation significantly greater than zero?</strong> That quastion and others related to square matrix associations can be answered using Mantel&#39;s permutation test. </p>
-
-<pre><code class="r">mantelTest(d, cop, nperm = 900)
-</code></pre>
-
-<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-12"/></p>
-
+<p>Clustering validation is widely applied for hierarchical and
+iterative methods. Some measures of internal validation for a Tocher’s
+clustering outcome are implemented on biotools.</p>
+<p>The approach presented by Silva (2013) is implemented by taking the
+cluster distances in order to build a cophenetic matrix for clustering
+performed through the Tocher’s method. Their approach consists of taking
+the cophenetic distance among objects located in the same cluster as the
+intracluster distance and the cophenetic distance between objects of
+different clusters as the intercluster distance. Then, the Pearson’s
+correlation between the elements of the original and cophenetic matrix
+can be taken as a cophenetic correlation. The function to be called is
+<code>cophenetic()</code>, whose input is an object of class
+<code>tocher</code> and its output an object of class
+<code>dist</code>.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cop <span class="ot">&lt;-</span> <span class="fu">cophenetic</span>(toc)  <span class="co"># cophenetic matrix</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(d, cop)             <span class="co"># cophenetic correlation coefficient</span></span></code></pre></div>
+<pre><code>## [1] 0.7320551</code></pre>
+</div>
+<div id="mantels-test" class="section level2">
+<h2>Mantel’s test</h2>
+<p><strong>Is that cophenetic correlation significantly greater than
+zero?</strong> That quastion and others related to square matrix
+associations can be answered using Mantel’s permutation test.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mantelTest</span>(d, cop, <span class="at">nperm =</span> <span class="dv">900</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
 <pre><code>## 
 ##             Mantel&#39;s permutation test
 ## 
 ## Correlation: 0.7320551
 ## p-value: 0.001109878, based on 900 matrix permutations
-## Alternative hypothesis: true correlation is greater than 0
-</code></pre>
-
+## Alternative hypothesis: true correlation is greater than 0</code></pre>
+</div>
+</div>
+<div id="discriminant-analysis-based-on-mahalanobis-distance" class="section level1">
 <h1>Discriminant analysis based on Mahalanobis distance</h1>
-
-<p>A simple and efficient object classification rule is based on Mahalanobis distance. It consists of calculating the squared generalized Mahalanobis distances of each multivariate observation to the centre of each cluster. biotools performs this sort of discriminant analysis through <code>D2.disc()</code>, as follows: </p>
-
-<p>Consider the \(i\)-th (\(i = 1, 2, &hellip;, n_j\)) \(p\)-variate observation belonging to the \(j\)-th (\(j = 1, 2, &hellip;, k\)) cluster, \({\bf x}_{ij}\). Let \(\bar{{\bf x}}_{j'}\) be the vector of means of the \(j'\)-th (\(j' = 1, 2, &hellip;, k\)) cluster. The Mahalanobis distance from this observation to the centre of this cluster is given by</p>
-
-<p>\[
-    D_{ij, j'}^2 = ({\bf x}_{ij} - \bar{{\bf x}}_{j'})^T {\hat{\Sigma}}_{pooled}^{-1} ({\bf x}_{ij} - \bar{{\bf x}}_{j'})
-\]</p>
-
-<p>\noindent where \({\hat{\Sigma}}_{pooled}\) is the estimate of the pooled covariance matrix for clusters.</p>
-
-<p>Now consider \(C_j\) the random variable that represents the cluster at which the observation \({\bf x}_{ij}\) lies. The predicted class \(\hat{C}_{j'}\) for this observation is the one such that</p>
-
-<p>\[
-    j' \Rightarrow \min_{j' = 1}^{k} ( D_{ij, j'}^2 ) 
-\]</p>
-
-<p>\noindent i.e., the object is allocated to the cluster whose distance from its centre is the smallest.</p>
-
-<p>The output is the Mahalanobis distances from each observation to the centre of each cluster, the pooled covariance matrix for clusters and the confusion matrix, which contains the number of correct classifications in the diagonal cells and misclassifications off-diagonal. In addition, a column misclass indicates (with an asterisk) where there was disagreement between the original classification (grouping) and the predicted one (pred).</p>
-
-<pre><code class="r">D2.disc(data = maize[, 1:3], 
-        grouping = maize$family, 
-        pooled.cov = cov(res))
-</code></pre>
-
+<p>A simple and efficient object classification rule is based on
+Mahalanobis distance. It consists of calculating the squared generalized
+Mahalanobis distances of each multivariate observation to the centre of
+each cluster. biotools performs this sort of discriminant analysis
+through <code>D2.disc()</code>, as follows:</p>
+<p>Consider the <span class="math inline">\(i\)</span>-th (<span class="math inline">\(i = 1, 2, ..., n_j\)</span>) <span class="math inline">\(p\)</span>-variate observation belonging to the
+<span class="math inline">\(j\)</span>-th (<span class="math inline">\(j
+= 1, 2, ..., k\)</span>) cluster, <span class="math inline">\({\bf
+x}_{ij}\)</span>. Let <span class="math inline">\(\bar{{\bf
+x}}_{j&#39;}\)</span> be the vector of means of the <span class="math inline">\(j&#39;\)</span>-th (<span class="math inline">\(j&#39; = 1, 2, ..., k\)</span>) cluster. The
+Mahalanobis distance from this observation to the centre of this cluster
+is given by</p>
+<p><span class="math display">\[
+    D_{ij, j&#39;}^2 = ({\bf x}_{ij} - \bar{{\bf x}}_{j&#39;})^T
+{\hat{\Sigma}}_{pooled}^{-1} ({\bf x}_{ij} - \bar{{\bf x}}_{j&#39;})
+\]</span></p>
+<p>where <span class="math inline">\({\hat{\Sigma}}_{pooled}\)</span> is
+the estimate of the pooled covariance matrix for clusters.</p>
+<p>Now consider <span class="math inline">\(C_j\)</span> the random
+variable that represents the cluster at which the observation <span class="math inline">\({\bf x}_{ij}\)</span> lies. The predicted class
+<span class="math inline">\(\hat{C}_{j&#39;}\)</span> for this
+observation is the one such that</p>
+<p><span class="math display">\[
+    j&#39; \Rightarrow \min_{j&#39; = 1}^{k} ( D_{ij, j&#39;}^2 )
+\]</span></p>
+<p>i.e., the object is allocated to the cluster whose distance from its
+centre is the smallest.</p>
+<p>The output is the Mahalanobis distances from each observation to the
+centre of each cluster, the pooled covariance matrix for clusters and
+the confusion matrix, which contains the number of correct
+classifications in the diagonal cells and misclassifications
+off-diagonal. In addition, a column misclass indicates (with an
+asterisk) where there was disagreement between the original
+classification (grouping) and the predicted one (pred).</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">D2.disc</span>(<span class="at">data =</span> maize[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">grouping =</span> maize<span class="sc">$</span>family, </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">pooled.cov =</span> <span class="fu">cov</span>(res))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## D2.disc.default(data = maize[, 1:3], grouping = maize$family, 
 ##     pooled.cov = cov(res))
 ## 
 ## Mahalanobis distances from each class and class prediction (first 6 rows):
-##           X1        X2        X3        X4        X5 grouping pred
-## 1  0.6075575  9.712976 20.970574  9.584311  5.870589        1    1
-## 2  3.6521169  3.202266  6.936814 10.989061 12.524312        2    2
-## 3 16.5825884  4.874949  3.468493 10.094606 19.106220        3    3
-## 4 10.7383299 16.714143 31.501871  4.121057  3.496142        4    5
-## 5 11.9533308 22.662364 47.834072  7.030199  2.268491        5    5
-## 6  1.7343324  4.486490 17.479342  8.732280  7.262779        1    1
-##   misclass
-## 1         
-## 2         
-## 3         
-## 4        *
-## 5         
-## 6         
+##           X1        X2        X3        X4        X5 grouping pred misclass
+## 1  0.6075575  9.712976 20.970574  9.584311  5.870589        1    1         
+## 2  3.6521169  3.202266  6.936814 10.989061 12.524312        2    2         
+## 3 16.5825884  4.874949  3.468493 10.094606 19.106220        3    3         
+## 4 10.7383299 16.714143 31.501871  4.121057  3.496142        4    5        *
+## 5 11.9533308 22.662364 47.834072  7.030199  2.268491        5    5         
+## 6  1.7343324  4.486490 17.479342  8.732280  7.262779        1    1         
 ## 
 ## Class means:
 ##       NKPR       ED       CD
@@ -516,25 +684,47 @@ cor(d, cop)             # cophenetic correlation coefficient
 ## 2     0     3     1     0     0
 ## 3     0     0     4     0     0
 ## 4     0     1     0     1     2
-## 5     0     0     0     0     4
-</code></pre>
-
+## 5     0     0     0     0     4</code></pre>
+</div>
+<div id="miscellanea" class="section level1">
 <h1>Miscellanea</h1>
-
-<p><em>biotools</em> also contains several other useful miscelaneous tools, such as the statistical tests for genetic covariance components, the exact test for seed lot heterogeneity, an approach for predicting spatial gene diversity and a function to perform path analysis dealing with collinearity. </p>
-
+<p><em>biotools</em> also contains several other useful miscelaneous
+tools, such as the statistical tests for genetic covariance components,
+the exact test for seed lot heterogeneity, an approach for predicting
+spatial gene diversity and a function to perform path analysis dealing
+with collinearity.</p>
+</div>
+<div id="references" class="section level1">
 <h1>References</h1>
+<p>Mantel, N. 1967. The detection of disease clustering and a
+generalized regression approach. Cancer Research 27:209–220.</p>
+<p>Rao, C. R. 1952. Advanced statistical methods in biometric research.
+New York: John Wiley &amp; Sons.</p>
+<p>Silva, A. R., and C. T. S. Dias. 2013. A cophenetic correlation
+coefficient for Tocher’s method. Pesquisa Agropecuaria Brasileira 48:
+589–96.</p>
+<p>Singh, D. 1981. The relative importance of characters affecting
+genetic divergence. Indian Journal Genetics and Plant Breeding 41:
+237-45.</p>
+<p>Vasconcelos, E.S., Cruz, C.D., Bhering, L.L., Resende-Jr, M.F.R.
+2007. Metodo Alternativo para Analise de Agrupamento. Pesquisa
+Agropecuaria Brasileira 42:1421-1428.</p>
+</div>
 
-<p>Mantel, N. 1967. The detection of disease clustering and a generalized regression approach. Cancer Research 27:209–220. </p>
 
-<p>Rao, C. R. 1952. Advanced statistical methods in biometric research. New York: John Wiley &amp; Sons.</p>
 
-<p>Silva, A. R., and C. T. S. Dias. 2013. A cophenetic correlation coefficient for Tocher&#39;s method. Pesquisa Agropecuaria Brasileira 48: 589–96.</p>
+<!-- code folding -->
 
-<p>Singh, D. 1981. The relative importance of characters affecting genetic divergence. Indian Journal Genetics and Plant Breeding 41: 237-45.</p>
 
-<p>Vasconcelos, E.S., Cruz, C.D., Bhering, L.L., Resende-Jr, M.F.R. 2007. Metodo Alternativo para Analise de Agrupamento. Pesquisa Agropecuaria Brasileira 42:1421-1428.</p>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 </body>
-
 </html>
